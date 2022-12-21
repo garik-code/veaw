@@ -18,7 +18,6 @@ bot.on('message', async (ctx) => {
   }
   if (typeof ctx.update.message.new_chat_participant == 'object') {
     db.find({ username: ctx.update.message.new_chat_participant.username }, function (err, docs) {
-      console.log(docs);
       if (docs.length == 0) {
         db.insert(ctx.update.message.new_chat_participant)
       }
