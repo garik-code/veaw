@@ -12,8 +12,14 @@ setInterval(() => {
 bot.on('message', async (ctx) => {
   if(typeof ctx.update.message.text != 'undefined'){
     if (ctx.update.message.text.toLowerCase() == 'деньги за подписку') {
-      let id = Math.floor(Math.random() * (users.length-1));
-      ctx.reply(`Случайный пользователь\nhttps://t.me/${users[id].username}`);
+      const rand = () => {
+        let id = Math.floor(Math.random() * (users.length-1));
+        if (typeof users[id].username != 'undefined') {
+          ctx.reply(`Случайный пользователь\nhttps://t.me/${users[id].username}`);
+        }else{
+          ctx.replyWithHTML(`Случайный пользователь\n<a href="tg://user?id=${users[id].id}">${users[id].first_name}</a>`);
+        }
+      }
     }
   }
   if (typeof ctx.update.message.new_chat_participant == 'object') {
