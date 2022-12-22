@@ -20,6 +20,7 @@ bot.on('message', async (ctx) => {
           ctx.replyWithHTML(`Случайный пользователь\n<a href="tg://user?id=${users[id].id}">${users[id].first_name}</a>`);
         }
       }
+      rand()
     }
   }
   if (typeof ctx.update.message.new_chat_participant == 'object') {
